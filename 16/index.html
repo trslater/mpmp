@@ -220,8 +220,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#koch-snowflake" class="md-nav__link">
-    Koch Snowflake
+  <a href="#sierpinskis-triangle" class="md-nav__link">
+    Sierpinski's Triangle
   </a>
   
 </li>
@@ -234,8 +234,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sophisticated-approach" class="md-nav__link">
-    Sophisticated Approach
+  <a href="#closed-form-solution" class="md-nav__link">
+    Closed Form Solution
   </a>
   
 </li>
@@ -250,6 +250,13 @@
         <li class="md-nav__item">
   <a href="#further-work" class="md-nav__link">
     Further Work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-counting-occurrences-of-a-number" class="md-nav__link">
+    Bonus: Counting Occurrences of a Number
   </a>
   
 </li>
@@ -306,8 +313,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#koch-snowflake" class="md-nav__link">
-    Koch Snowflake
+  <a href="#sierpinskis-triangle" class="md-nav__link">
+    Sierpinski's Triangle
   </a>
   
 </li>
@@ -320,8 +327,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sophisticated-approach" class="md-nav__link">
-    Sophisticated Approach
+  <a href="#closed-form-solution" class="md-nav__link">
+    Closed Form Solution
   </a>
   
 </li>
@@ -336,6 +343,13 @@
         <li class="md-nav__item">
   <a href="#further-work" class="md-nav__link">
     Further Work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-counting-occurrences-of-a-number" class="md-nav__link">
+    Bonus: Counting Occurrences of a Number
   </a>
   
 </li>
@@ -396,9 +410,9 @@
 <p>Here we use <code>itertools</code>'s <code>chain</code> function to flatten Pascal's Triangle into one big generator with every number in the triangle. We then use a filter to reduce to only odd numbers, convert to a list, and get the length of this list. I feel like there is a probably a more efficient way of doing this, but given I found a closed form equation for this number shortly after, I didn't bother finding one.</p>
 <p>From this, we get that <strong>26.489825581395348%</strong> of numbers are odd.</p>
 <p>The full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/naive.py">here</a>.</p>
-<h2 id="koch-snowflake">Koch Snowflake</h2>
-<p>For 128 rows the naive approach was pretty fast, but for larger numbers this approach gets slow very quickly, so I wanted to find a more efficient method---ideally a formula.</p>
-<p>I started by trying to see if there was a pattern to the odds. I decided to just print the triangle, but only printing evens as spaces and odds as asterisks:</p>
+<h2 id="sierpinskis-triangle">Sierpinski's Triangle</h2>
+<p>For 128 rows the naive approach was pretty fast, but for larger numbers this approach gets slow very quickly. Additionally, this approach does not help us come up with any general statements about the oddness of Pascal's Triangle, so I wanted to find a more efficient method---ideally a formula.</p>
+<p>I started by trying to see if there was a pattern to the odds. I decided to just print the triangle, replacing evens with spaces and odds with asterisks:</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">pascals_triangle</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
         <span class="c1"># If odd</span>
@@ -411,7 +425,7 @@
     <span class="nb">print</span><span class="p">()</span>
 </code></pre></div>
 
-<p>To my amazement, the Koch Snowflake appeared:</p>
+<p>To my amazement, Sierpinski's Triangle appeared:</p>
 <div class="highlight"><pre><span></span><code>*
 * *
 *   *
@@ -431,9 +445,10 @@
 </code></pre></div>
 
 <p>I think I have actually seen this before, but I had forgotten, and it was satisfying to discover it for myself.</p>
+<p>Full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/sierpinski.py">here</a>.</p>
 <h2 id="recurrence-relation">Recurrence Relation</h2>
-<p>I was playing around with a triangle of depth 50. Just for aesthetics, I tried to hone in on the depth of Pascal's Triangle that nicely encapsulated the largest triangle of the Koch snowflake pattern. I slowly incremented the depth until it looked right and noticed the depth was 64—a binary number! I was pretty certain this wasn't a coincidence, so I tried other binary numbers and they all produced nicely bounded Koch snowflakes. It became apparent that the choice of 128 was not arbitrary.</p>
-<p>I decided to check all of the powers of two to see if a pattern arose:</p>
+<p>I tried generating Sierpinski's Triangle at different sizes and noticed that sometimes the pattern was "complete" and sometimes it wasn't. Just for aesthetics, I tried to hone in on the depth of Pascal's Triangle that nicely encapsulated the largest triangle. I slowly incremented the depth from a starting point of 50 until it looked right and noticed the depth was 64—a power of 2! I was pretty certain this wasn't a coincidence, so I tried other powers of 2 and they all produced nicely bounded snowflakes. It became apparent that the choice of 128 was not arbitrary.</p>
+<p>I decided to check several of the powers of 2 to see if a pattern in the way the triangle grew arose:</p>
 <p><span class="arithmatex">\(m = 2^0\)</span>:</p>
 <div class="highlight"><pre><span></span><code>*
 </code></pre></div>
@@ -486,16 +501,17 @@
     3a_{n-1} &amp; n &gt; 0
 \end{cases}\]</div>
 <p>Where <span class="arithmatex">\(n\)</span> is the step number and <span class="arithmatex">\(m = 2^n\)</span>, i.e., there are <span class="arithmatex">\(2^n\)</span> rows at step <span class="arithmatex">\(n\)</span>.</p>
-<p>Mathematical induction could be used to prove that the preceding recurrence relation is equivalent to the following closed form expression:</p>
+<p>This is a common form of recurrence relation with a known closed form:</p>
 <div class="arithmatex">\[o_n = 3^n\]</div>
-<p>However, we don't know what step we are on, we only know how many rows we have. We want an expression in terms of <span class="arithmatex">\(m\)</span>, so we just solve the rows at a given step equation for <span class="arithmatex">\(n\)</span> to get an expression in terms of <span class="arithmatex">\(m\)</span>:</p>
+<p>Mathematical induction could be used to prove that this is the case, but it is not need (and I did not have the time).</p>
+<p>This is getting us close to a formula for the percentage of odd numbers in Pascal's Triangle; however, we want it in terms of number of rows <span class="arithmatex">\(m\)</span> and not in <span class="arithmatex">\(n\)</span>. So we just solve the rows at a given step equation for <span class="arithmatex">\(n\)</span> to get an expression in terms of <span class="arithmatex">\(m\)</span>:</p>
 <div class="arithmatex">\[\begin{align*}
     m &amp;= 2^n \\
     n &amp;= \log_2{m}
 \end{align*}\]</div>
 <p>Resulting in the following expression for the number of odd numbers in a Pascal's Triangle of <span class="arithmatex">\(m\)</span> rows:</p>
 <div class="arithmatex">\[o_m = 3^{\log_2{m}}\]</div>
-<h2 id="sophisticated-approach">Sophisticated Approach</h2>
+<h2 id="closed-form-solution">Closed Form Solution</h2>
 <p>From the preceding work, we can come up with an elegant and efficient method of calculating the percentage of odd numbers in a Pascal's Triangle:</p>
 <div class="arithmatex">\[p = \frac{o_m}{N} = \frac{2(3^{\log_2{m}})}{m(m + 1)}\]</div>
 <h2 id="does-the-percentage-approach-a-value">Does the Percentage Approach a Value?</h2>
@@ -516,8 +532,12 @@
 <p>This becomes a simple polynomial rational expression where the highest order term on the top is <span class="arithmatex">\(\log_2{3}\)</span> and the highest oder term on the bottom is <span class="arithmatex">\(2\)</span>. Since <span class="arithmatex">\(2 &gt; \log_2{3}\)</span>, we know that the limit is equal to zero:</p>
 <div class="arithmatex">\[\lim_{m\to\infty}{\frac{2(3^{\log_2{m}})}{m(m+1)}} = 0\]</div>
 <p>In conclusion, the percentage of primes in Pascal's Triangle approaches zero.</p>
+<p>Full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/closed_form.py">here</a></p>
 <h2 id="further-work">Further Work</h2>
 <p>The formula is only applicable to rows that are powers of 2. For numbers of rows in-between, the number of odds is incorrect. Because of this, my conclusion may be off.</p>
+<h2 id="bonus-counting-occurrences-of-a-number">Bonus: Counting Occurrences of a Number</h2>
+<p>As a bonus I created a CLI for calculating the number of occurrences of a number in Pascal's Triangle.</p>
+<p>Full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/occurrences.py">here</a></p>
                 
               
               
