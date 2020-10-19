@@ -1,6 +1,6 @@
-"""Print Koch Snowflake CLI
+"""Print Sierpinski's Triangle CLI
 
-Generates the Koch Snowflake based on Pascal's Triangle's odds.
+Generates the Sierpinski's Triangle based on Pascal's Triangle's odds.
 """
 
 
@@ -12,7 +12,7 @@ from . import lib
 def main(argv):
     num_rows = int(argv[0])
 
-    lib.print_koch(lib.pt(num_rows))
+    lib.print_sierpinski(lib.pt(num_rows))
 
 
 if __name__ == "__main__":
