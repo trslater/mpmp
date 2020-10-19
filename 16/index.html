@@ -514,6 +514,7 @@
 <h2 id="closed-form-solution">Closed Form Solution</h2>
 <p>From the preceding work, we can come up with an elegant and efficient method of calculating the percentage of odd numbers in a Pascal's Triangle:</p>
 <div class="arithmatex">\[p = \frac{o_m}{N} = \frac{2(3^{\log_2{m}})}{m(m + 1)}\]</div>
+<p>Full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/closed_form.py">here</a></p>
 <h2 id="does-the-percentage-approach-a-value">Does the Percentage Approach a Value?</h2>
 <p>To figure out the overall oddness of Pascal's Triangle, we should be able to just take the limit as the number of rows approaches infinity of our formula. Let <span class="arithmatex">\(L\)</span> be the limit of <span class="arithmatex">\(p\)</span>.</p>
 <div class="arithmatex">\[\lim_{m\to\infty}{\frac{2(3^{\log_2{m}})}{m(m+1)}}\]</div>
@@ -532,7 +533,6 @@
 <p>This becomes a simple polynomial rational expression where the highest order term on the top is <span class="arithmatex">\(\log_2{3}\)</span> and the highest oder term on the bottom is <span class="arithmatex">\(2\)</span>. Since <span class="arithmatex">\(2 &gt; \log_2{3}\)</span>, we know that the limit is equal to zero:</p>
 <div class="arithmatex">\[\lim_{m\to\infty}{\frac{2(3^{\log_2{m}})}{m(m+1)}} = 0\]</div>
 <p>In conclusion, the percentage of primes in Pascal's Triangle approaches zero.</p>
-<p>Full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/closed_form.py">here</a></p>
 <h2 id="further-work">Further Work</h2>
 <p>The formula is only applicable to rows that are powers of 2. For numbers of rows in-between, the number of odds is incorrect. Because of this, my conclusion may be off.</p>
 <h2 id="bonus-counting-occurrences-of-a-number">Bonus: Counting Occurrences of a Number</h2>
