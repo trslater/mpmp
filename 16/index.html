@@ -514,6 +514,7 @@
 <h2 id="closed-form-solution">Closed Form Solution</h2>
 <p>From the preceding work, we can come up with an elegant and efficient method of calculating the percentage of odd numbers in a Pascal's Triangle:</p>
 <div class="arithmatex">\[p = \frac{o_m}{N} = \frac{2(3^{\log_2{m}})}{m(m + 1)}\]</div>
+<p>Using this method, I obtained the same result as the naive approach: <strong>26.489825581395348%</strong>.</p>
 <p>Full code can be found <a href="https://github.com/trslater/mpmp/blob/master/odd_pascal/closed_form.py">here</a></p>
 <h2 id="does-the-percentage-approach-a-value">Does the Percentage Approach a Value?</h2>
 <p>To figure out the overall oddness of Pascal's Triangle, we should be able to just take the limit as the number of rows approaches infinity of our formula. Let <span class="arithmatex">\(L\)</span> be the limit of <span class="arithmatex">\(p\)</span>.</p>
