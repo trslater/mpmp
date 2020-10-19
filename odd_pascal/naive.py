@@ -1,11 +1,7 @@
-"""MPMP 16: How Odd is Pascal's Triangle?
+"""MPMP16: Naive Solution CLI
 
-What percentage of the numbers in the first 128 rows of Pascal's triangle are
-odd?
-
-Note: "pt" used as abbreviation for "Pascal's Triangle"
-
-[More Info](http://www.think-maths.co.uk/pascaltriangle)
+Simply counts number of odds in Pascal's Triangle and divdes by calculated
+total.
 """
 
 
