@@ -12,7 +12,7 @@ from . import lib
 def main(argv):
     num_rows = int(argv[0])
 
-    lib.print_sierpinski(lib.pt(num_rows))
+    lib.print_sierpinski(lib.pt(num_rows), num_rows)
 
 
 if __name__ == "__main__":

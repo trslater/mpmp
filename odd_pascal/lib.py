@@ -3,15 +3,16 @@
 
 
 import math
-import itertools
+
+from itertools import islice, starmap, product, tee
 
 
 def percent_odd(m):
     return 2*3**(math.log(m, 2))/m/(m + 1)
 
 
-def print_sierpinski(pt):
-    for row in pt:
+def print_sierpinski(pt, m):
+    for row in (islice(pt, m) for _ in range(m)):
         for num in row:
             if is_odd(num):
                 print("* ", end="")
@@ -22,15 +23,15 @@ def print_sierpinski(pt):
         print()
 
 
-def pt(d):
-    return ((math.comb(i, j) for j in range(i+1)) for i in range(d))
+def pt(m):
+    return starmap(math.comb, product(*tee(range(m))))
 
 
 def paired(iterable):
     """Returns an iterator of every consecutive pair from an iterable"""
 
     # Get two copies of permutation as iterators
-    p1, p2 = itertools.tee(iterable)
+    p1, p2 = tee(iterable)
     # Advance second permutation iterator by one
     next(p2)
 
