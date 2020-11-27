@@ -2,6 +2,10 @@ site_name: Matt Parker's Maths Puzzles
 
 theme:
   name: material
+  palette:
+    scheme: slate
+    primary: red
+    accent: light blue
 
 markdown_extensions:
   - admonition
